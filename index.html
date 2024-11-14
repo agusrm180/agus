@@ -1,0 +1,236 @@
+html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Lizeth ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #ff6b6b, #833ab4);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background: #ff1493;
+            margin: 20px auto;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 200px;
+            background: #ff69b4;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gift-box::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 40px;
+            background: #ff69b4;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .candle {
+            width: 40px;
+            height: 100px;
+            background: white;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 5px;
+        }
+
+        .flame {
+            width: 20px;
+            height: 30px;
+            background: #ffd700;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 1s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            max-width: 600px;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff1493;
+            transform: rotate(45deg);
+            animation: float 4s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #ff1493;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            left: -10px;
+        }
+
+        .heart::after {
+            top: -10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .open-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            color: #ff1493;
+            font-size: 1.2em;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 10;
+            max-width: 80%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    
+    <div class="container">
+        <h1>Lizeth ❤️</h1>
+        
+        <div class="message">
+            Te quiero mucho mi amor. Eres lo más especial en mi vida.
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="gift-box" onclick="openGift()"></div>
+    </div>
+
+    <div class="open-message" id="giftMessage">
+        <span class="close-btn" onclick="closeGift()">×</span>
+        <h2>Mi amor...</h2>
+        <p>
+            Cada día que paso contigo es un regalo.<br>
+            Tu sonrisa ilumina mi mundo.<br>
+            Tu amor me hace la persona más feliz.<br>
+            Te amo más de lo que las palabras pueden expresar.<br><br>
+            ¡Eres el amor de mi vida! ❤️
+        </p>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createHearts() {
+            const heartsContainer = document.querySelector('.hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 4 + 's';
+                heart.style.opacity = Math.random();
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Función para abrir el regalo
+        function openGift() {
+            document.getElementById('giftMessage').style.display = 'block';
+        }
+
+        // Función para cerrar el regalo
+        function closeGift() {
+            document.getElementById('giftMessage').style.display = 'none';
+        }
+
+        // Iniciar los corazones
+        createHearts();
+    </script>
+</body>
+</html>
